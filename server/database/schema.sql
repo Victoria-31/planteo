@@ -10,6 +10,13 @@ CREATE TABLE earth (
   type VARCHAR(100) NOT NULL
 );
 
+INSERT INTO earth (id, type) VALUES
+(1, 'Terre légère et bien drainée'),
+(2, 'Terre sableuse'),
+(3, 'Terre riche et humifère'),
+(4, 'Terre fraîche et meuble');
+
+
 CREATE TABLE month (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(20) NOT NULL UNIQUE
@@ -66,22 +73,18 @@ CREATE TABLE plant_harvest (
   FOREIGN KEY (harvest_id) REFERENCES harvest(id) ON DELETE CASCADE
 );
 
+
 INSERT INTO month (name) VALUES 
 ('Janvier'), ('Février'), ('Mars'), ('Avril'), ('Mai'), 
 ('Juin'), ('Juillet'), ('Août'), ('Septembre'), ('Octobre'), 
 ('Novembre'), ('Décembre');
 
 INSERT INTO plant (name, words, background, description, watering, earth_id) VALUES
-('Tomate', 'Soleil ☀️, Chaleur 🔥, Délicieuse 🍅, Facile 🌱', 'https://example.com/tomate.jpg', 'Une plante appréciant la chaleur et nécessitant du tuteurage.', 'Arrosage régulier sans mouiller les feuilles', 1),
-('Carotte', 'Orange 🟠, Croquante 🥕, Santé ❤️, Racine 🌿', 'https://example.com/carotte.jpg', 'Une racine sucrée et croquante qui pousse sous terre.', 'Arrosage léger mais constant', 2),
-('Courgette', 'Rapide ⚡, Géante 🥒, Gourmande 🍽️, Facile 🎯', 'https://example.com/courgette.jpg', 'Une plante prolifique qui donne de nombreux fruits en été.', 'Arrosage abondant mais espacé', 3),
-('Laitue', 'Fraîche 🥬, Croquante 🥗, Rapide 🚀, Délicate 🌱', 'https://example.com/laitue.jpg', 'Une salade à croissance rapide idéale pour les climats tempérés.', 'Arrosage fréquent et léger', 4);
+('Tomate', 'Soleil, Chaleur, Délicieuse, Facile 🍅', '/tomates.jpg', 'Une plante appréciant la chaleur et nécessitant du tuteurage.', 'Arrosage régulier sans mouiller les feuilles', 1),
+('Carotte', 'Vitamines , Croquante , Santé, Racine 🥕', '/carottes.jpg', 'Une racine sucrée et croquante qui pousse sous terre.', 'Arrosage léger mais constant', 2),
+('Courgette', 'Rapide, Géante, Gourmande, Facile  🥒', '/courgettes.jpg', 'Une plante prolifique qui donne de nombreux fruits en été.', 'Arrosage abondant mais espacé', 3),
+('Laitue', 'Fraîche , Croquante, Rapide, Délicate 🥬', '/laitue.jpg', 'Une salade à croissance rapide idéale pour les climats tempérés.', 'Arrosage fréquent et léger', 4);
 
-INSERT INTO earth (id, type) VALUES
-(1, 'Terre légère et bien drainée'),
-(2, 'Terre sableuse'),
-(3, 'Terre riche et humifère'),
-(4, 'Terre fraîche et meuble');
 
 INSERT INTO seedling (id) VALUES (1), (2), (3), (4);
 

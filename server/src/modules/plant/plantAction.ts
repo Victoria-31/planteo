@@ -3,9 +3,9 @@ import plantRepository from "./plantRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    const offers = await plantRepository.readAll();
+    const plants = await plantRepository.readAll();
 
-    res.json(offers);
+    res.json(plants);
   } catch (err) {
     next(err);
   }

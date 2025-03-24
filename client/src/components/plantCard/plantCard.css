@@ -1,0 +1,41 @@
+.plant-card {
+  width: 75vw;
+  background-color: var(--light);
+  border-radius: 32px 0 32px 0;
+  margin: 2rem 0;
+
+  & h3 {
+    padding: 1rem 0 0 1rem;
+  }
+  & p {
+    padding: 1rem;
+  }
+  & img {
+    width: 75vw;
+    height: 25vh;
+    object-fit: cover;
+    border-radius: 32px 0 32px 0;
+  }
+}
+.scroll-card-container {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  overflow: hidden;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+.scroll-card-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scroll-card-container::-webkit-scrollbar-track {
+  background: none;
+}
+
+.scroll-card-container::-webkit-scrollbar-thumb {
+  background: var(--second);
+  border-radius: 4px;
+}

@@ -27,13 +27,16 @@ header p {
 
 section:first-of-type {
   background-image: url("../public/BG-Explore.jpg");
-  background-size: 200vw;
-  height: 60vh;
+  background-size: 250vw;
+  height: 72vh;
   object-fit: cover;
-  padding: 3rem 0 2rem 2rem;
+  padding: 3rem 1rem 2rem 1rem;
+  & ul {
+    display: flex;
+  }
 
-  & p {
-    padding: 1.6rem 0;
+  & p:first-of-type {
+    padding-top: 0.6rem;
   }
 }
 

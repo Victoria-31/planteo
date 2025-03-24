@@ -8,11 +8,14 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // Import the main app component
 import App from "./App";
 
-// Import additional components for new routes
-// Try creating these components in the "pages" folder
+//pages
 
 import Homepage from "./pages/homepage/Homepage";
 import Plants from "./pages/plants/Plants";
+
+//API
+
+import { getAllPlants } from "./services/request";
 /* ************************************************************************* */
 
 // Create router configuration with routes
@@ -24,6 +27,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homepage />,
+        loader: getAllPlants,
       },
       {
         path: "/plants",
