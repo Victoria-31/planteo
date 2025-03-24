@@ -51,8 +51,11 @@ nav a img {
   nav {
     padding-left: 0.6rem;
     height: 11vh;
-    & li a {
-      font-weight: 300;
+    & ul {
+      font-size: 1.4rem;
+    }
+    & button {
+      font-size: 1.4rem;
     }
 
     .burger-icon {
