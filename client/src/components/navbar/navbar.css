@@ -1,0 +1,70 @@
+nav {
+  position: fixed;
+  top: 0;
+  height: 12vh;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  color: var(--light);
+  & button {
+    background: none;
+    border: none;
+    padding-right: 1.6rem;
+    color: var(--light);
+    font-size: 2rem;
+    font-family: "Squada One", sans-serif;
+  }
+}
+
+nav.scrolled {
+  background-color: var(--primary);
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  min-width: 60vw;
+  padding-right: 1.8rem;
+  font-size: 2rem;
+}
+
+nav a img {
+  padding-left: 0.6rem;
+  height: 100%;
+}
+
+.burger-icon {
+  display: none;
+  cursor: pointer;
+}
+.linksNav {
+  display: none;
+}
+
+.burger-icon {
+  display: block;
+}
+
+@media screen and (min-width: 768px) {
+  nav {
+    padding-left: 0.6rem;
+    height: 11vh;
+    & li a {
+      font-weight: 300;
+    }
+
+    .burger-icon {
+      display: none;
+      cursor: pointer;
+    }
+    .linksNav {
+      display: flex;
+    }
+
+    .burger-icon {
+      display: none;
+    }
+  }
+}
