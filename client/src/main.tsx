@@ -11,11 +11,13 @@ import App from "./App";
 //pages
 
 import Homepage from "./pages/homepage/Homepage";
+import PlantDetails from "./pages/plantDetails/PlantDetails";
 import Plants from "./pages/plants/Plants";
 
 //API
 
 import { getAllPlants } from "./services/request";
+import { getPlantDetails } from "./services/request";
 /* ************************************************************************* */
 
 // Create router configuration with routes
@@ -28,6 +30,11 @@ const router = createBrowserRouter([
         path: "/",
         element: <Homepage />,
         loader: getAllPlants,
+      },
+      {
+        path: "/plantdetails/:id",
+        element: <PlantDetails />,
+        loader: ({ params }) => getPlantDetails(params.id),
       },
       {
         path: "/plants",

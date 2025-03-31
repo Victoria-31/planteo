@@ -10,6 +10,7 @@ const router = express.Router();
 import plantAction from "./modules/plant/plantAction";
 
 router.get("/api/plants", plantAction.browse);
+router.get("/api/plants/:id", plantAction.read);
 
 /* ************************************************************************* */
 

@@ -1,5 +1,6 @@
 .plant-card {
   width: 75vw;
+  min-height: 50vh;
   background-color: var(--light);
   border-radius: 32px 0 32px 0;
   margin: 2rem 0;
@@ -9,6 +10,14 @@
   }
   & p {
     padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  & a {
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    margin-left: 1rem;
+
+    border: 2px solid var(--second);
   }
   & img {
     width: 100%;

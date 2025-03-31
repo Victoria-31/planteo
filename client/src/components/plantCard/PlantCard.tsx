@@ -1,4 +1,5 @@
 import "./plantCard.css";
+import { Link } from "react-router-dom";
 interface Plant {
   id: number;
   name: string;
@@ -17,6 +18,7 @@ export default function PlantCard({ plant }: PlantCardProps) {
       <img src={`${plant.background}`} alt={plant.name} />
       <h3>{plant.name}</h3>
       <p>{plant.words}</p>
+      <Link to={`/plantdetails/${plant.id}`}> Je veux tous savoir 🧐</Link>
     </article>
   );
 }

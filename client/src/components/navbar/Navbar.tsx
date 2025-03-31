@@ -55,7 +55,7 @@ const NavBar: React.FC = () => {
         </li>
         <li>
           <button type="button" className="nav-link">
-            Connexion
+            Mon jardin
           </button>
         </li>
       </ul>

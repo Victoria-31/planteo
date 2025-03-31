@@ -11,4 +11,11 @@ const getAllPlants = () => {
     });
 };
 
-export { getAllPlants };
+const getPlantDetails = (id: string | undefined) => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/plants/${id}`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
+export { getAllPlants, getPlantDetails };

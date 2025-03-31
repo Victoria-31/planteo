@@ -28,7 +28,7 @@
 .homepage section:first-of-type {
   background-image: url("../public/BG-Explore.jpg");
   background-size: 250vw;
-  height: 72vh;
+  min-height: 72vh;
   object-fit: cover;
   padding: 3rem 1rem 2rem 1rem;
   & h2 {
