@@ -14,15 +14,9 @@
   }
 }
 
-/* .plantDetails {
-  font-family: Arial, sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-} */
+.plantDetails {
+  margin-bottom: 3rem;
+}
 
 /* .plantWords {
   font-size: 1.2em;
@@ -40,13 +34,14 @@
 }
 .plantDetails button {
   display: flex;
-
+  margin: auto;
   justify-content: center;
-  padding: 1rem;
-  border: 2px solid var(--second);
+  padding: 0.4rem 0.8rem;
+  background-color: var(--primary);
+  font-weight: 700;
   border-radius: 8px;
-  background: none;
-  margin-bottom: 2rem;
+  border: none;
+  color: var(--light);
 }
 .plantInfo {
   display: flex;

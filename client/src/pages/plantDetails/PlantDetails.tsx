@@ -1,6 +1,11 @@
+import axios from "axios";
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+
 import "./plantDetails.css";
+
 interface Plant {
   id: number;
   name: string;
@@ -13,11 +18,65 @@ interface Plant {
   harvest_months?: string;
 }
 
+interface PlantUser {
+  plant_id: number;
+}
+
 export default function PlantDetails() {
   const plant = useLoaderData() as Plant;
-  const totalPlants = 4;
-  const prevPlantId = plant.id > 1 ? plant.id - 1 : 1;
-  const nextPlantId = plant.id < totalPlants ? plant.id + 1 : totalPlants;
+  const totalPlants = 19;
+  const nextPlantId = plant.id < totalPlants ? plant.id + 1 : 1;
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const newPlantUser = {
+    plant_id: plant.id,
+  };
+
+  // const validator = {
+  //   revalidate: () => {
+  //     console.info("revalidate");
+  //   },
+  // };
+
+  const handleAddPlant = async (newPlantUser: PlantUser) => {
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/userplants`,
+        newPlantUser,
+      );
+      setErrorMessage("");
+
+      // validator.revalidate();
+      toast.success("Offre ajoutée avec succès !", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("Erreur lors de l'ajout de la plante :", error);
+        setErrorMessage(error.response?.data.error);
+        toast.error(errorMessage, {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
+      } else {
+        console.error("Une erreur inattendue s'est produite :", error);
+        setErrorMessage("Une erreur inattendue s'est produite.");
+      }
+    }
+  };
+
   return (
     <main className="plantDetails">
       <header>
@@ -25,9 +84,15 @@ export default function PlantDetails() {
       </header>
       <h1>{plant.name}</h1>
       <div className="navigation">
-        <Link to={`/plantdetails/${prevPlantId}`}>🌿 Précédente 🌿 </Link>
-        <Link to={`/plantdetails/${nextPlantId}`}>Suivante 🌿</Link>
-      </div>{" "}
+        <Link to="/plants">🌿 Toute les plantes - </Link>
+
+        <Link
+          onClick={() => setErrorMessage("")}
+          to={`/plantdetails/${nextPlantId}`}
+        >
+          Suivante 🌿
+        </Link>
+      </div>
       <section className="plantInfo">
         <img src={plant.background} alt={plant.name} className="plantImage" />
         <article>
@@ -51,8 +116,23 @@ export default function PlantDetails() {
           )}
         </article>
       </section>
-      <Link to="/plants">Toute les plantes 🌿</Link>
-      <button type="button"> Ajouter à mon jardin</button>
+      <p className="errorMessage">{errorMessage ? errorMessage : ""}</p>
+      <button type="button" onClick={() => handleAddPlant(newPlantUser)}>
+        Ajouter à mon jardin
+      </button>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </main>
   );
 }

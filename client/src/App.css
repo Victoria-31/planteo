@@ -47,3 +47,10 @@ main {
   min-height: 90vh;
   /* padding-top: 10vh; */
 }
+
+.errorMessage {
+  color: var(--message-error);
+  text-align: center;
+  font-size: 0.8rem;
+  padding-bottom: 1rem;
+}
