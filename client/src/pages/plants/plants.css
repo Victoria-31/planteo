@@ -1,0 +1,15 @@
+.plants header {
+  background-image: url("../public/BG-plants.jpg");
+  background-size: 200vw;
+  height: 20vh;
+  object-fit: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  color: var(--light);
+  & h2 {
+    margin-top: 2rem;
+  }
+}

@@ -73,6 +73,15 @@ CREATE TABLE plant_harvest (
   FOREIGN KEY (harvest_id) REFERENCES harvest(id) ON DELETE CASCADE
 );
 
+CREATE TABLE plantuser (
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  plant_id INT UNSIGNED NOT NULL UNIQUE,
+  FOREIGN KEY (plant_id) REFERENCES plant(id) ON DELETE CASCADE
+);
+
+
+
+
 
 INSERT INTO month (name) VALUES 
 ('Janvier'), ('Février'), ('Mars'), ('Avril'), ('Mai'), 
@@ -83,7 +92,22 @@ INSERT INTO plant (name, words, background, description, watering, earth_id) VAL
 ('Tomate', 'Soleil, Chaleur, Délicieuse, Facile 🍅', '/tomates.jpg', 'Une plante appréciant la chaleur et nécessitant du tuteurage.', 'Arrosage régulier sans mouiller les feuilles', 1),
 ('Carotte', 'Vitamines , Croquante , Santé, Racine 🥕', '/carottes.jpg', 'Une racine sucrée et croquante qui pousse sous terre.', 'Arrosage léger mais constant', 2),
 ('Courgette', 'Rapide, Géante, Gourmande, Facile  🥒', '/courgettes.jpg', 'Une plante prolifique qui donne de nombreux fruits en été.', 'Arrosage abondant mais espacé', 3),
-('Laitue', 'Fraîche , Croquante, Rapide, Délicate 🥬', '/laitue.jpg', 'Une salade à croissance rapide idéale pour les climats tempérés.', 'Arrosage fréquent et léger', 4);
+('Laitue', 'Fraîche , Croquante, Rapide, Délicate 🥬', '/laitue.jpg', 'Une salade à croissance rapide idéale pour les climats tempérés.', 'Arrosage fréquent et léger', 4),
+('Poivron', 'Coloré, Doux, Soleil, Délicieux 🫑', '/poivron.jpg', 'Un légume fruit qui apprécie la chaleur et pousse lentement.', 'Arrosage modéré et régulier', 1),
+('Radis', 'Croquant, Rapide, Facile, Fraîcheur 🌱', '/radis.jpg', 'Une racine rapide à cultiver, idéale pour les débutants.', 'Arrosage fréquent mais léger', 2),
+('Aubergine', 'Soleil, Riche, Délicate, Exotique 🍆', '/aubergine.jpg', 'Un légume méditerranéen nécessitant chaleur et patience.', 'Arrosage modéré, sans excès', 1),
+('Fraise', 'Sucrée, Gourmande, Printemps, Facile 🍓', '/fraise.jpg', 'Un petit fruit rouge apprécié pour sa douceur.', 'Arrosage modéré, maintenir un sol humide', 3),
+('Basilic', 'Aromatique, Soleil, Cuisine, Délicieux 🌿', '/basilic.jpg', 'Une plante aromatique très utilisée en cuisine.', 'Arrosage modéré, éviter les excès d’eau', 1),
+('Ciboulette', 'Parfumé, Rustique, Cuisine, Facile 🧄', '/ciboulette.jpg', 'Une herbe aromatique facile à cultiver en pot ou au jardin.', 'Arrosage léger et régulier', 3),
+('Menthe', 'Fraîcheur, Thé, Cuisine, Invasive 🌱', '/menthe.jpg', 'Une plante aromatique qui pousse très vite et envahit son espace.', 'Arrosage fréquent, aime l’humidité', 4),
+('Oignon', 'Condiment, Rustique, Facile, Incontournable 🧅', '/oignon.jpg', 'Une plante bulbeuse essentielle en cuisine.', 'Arrosage léger, surtout en début de croissance', 2),
+('Pomme de terre', 'Féculent, Rustique, Productif, Facile 🥔', '/pdt.jpg', 'Un légume facile à cultiver, très nourrissant.', 'Arrosage modéré, éviter l’excès d’eau', 2),
+('Pois', 'Légumineuse, Grimpante, Sucrée, Délicieuse 🌿', '/pois.jpg', 'Un légume grimpant qui enrichit le sol en azote.', 'Arrosage fréquent, surtout en période de floraison', 3),
+('Haricot', 'Rapide, Facile, Riche, Grimpant 🌱', '/haricot.jpg', 'Un légume facile à cultiver, qu’il soit nain ou grimpant.', 'Arrosage modéré, éviter l’excès d’eau', 3),
+('Épinard', 'Feuillu, Santé, Rapide, Facile 🌿', '/epinard.jpg', 'Une plante à feuilles riches en fer et en vitamines.', 'Arrosage fréquent pour maintenir un sol frais', 4),
+('Brocoli', 'Nourrissant, Croquant, Santé, Riche 🥦', '/brocoli.jpg', 'Un légume aux nombreuses vertus nutritionnelles.', 'Arrosage fréquent, surtout en été', 4),
+('Chou-fleur', 'Délicat, Blanc, Cuisine, Doux 🥬', '/choufleur.jpg', 'Un légume délicat qui nécessite une bonne nutrition du sol.', 'Arrosage modéré, maintenir un sol humide', 4),
+('Betterave', 'Sucrée, Santé, Racine, Colorée 🍠', '/betterave.jpg', 'Un légume racine coloré, apprécié pour ses bienfaits.', 'Arrosage régulier mais léger', 2);
 
 
 INSERT INTO seedling (id) VALUES (1), (2), (3), (4);
@@ -113,3 +137,5 @@ INSERT INTO plant_harvest (plant_id, harvest_id) VALUES
 (2, 2),
 (3, 3),
 (4, 4);
+
+INSERT INTO plantuser (plant_id) VALUES (1);

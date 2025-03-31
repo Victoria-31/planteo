@@ -16,6 +16,74 @@ class plantRepository {
 
     return rows;
   }
+  async searchPlants(
+    search: string,
+    earth: string,
+    seedlingMonths: string,
+    harvestMonths: string,
+  ) {
+    let query = `
+      SELECT p.*, e.type as earth_type
+      FROM plant p
+      JOIN earth e ON p.earth_id = e.id
+      WHERE 1=1
+    `;
+    const params: (string | number)[] = [];
+
+    if (search) {
+      query += " AND p.name LIKE ?";
+      params.push(`%${search}%`);
+    }
+
+    if (earth) {
+      const earthId = Number(earth);
+      if (!Number.isNaN(earthId)) {
+        query += " AND p.earth_id = ?";
+        params.push(earthId);
+      }
+    }
+
+    if (seedlingMonths) {
+      const months = seedlingMonths
+        .split(",")
+        .map(Number)
+        .filter((n) => !Number.isNaN(n));
+      if (months.length > 0) {
+        const placeholders = months.map(() => "?").join(",");
+        query += ` AND p.id IN (
+          SELECT ps.plant_id FROM plant_seedling ps
+          JOIN seedling_months sm ON ps.seedling_id = sm.seedling_id
+          WHERE sm.month_id IN (${placeholders})
+        )`;
+        params.push(...months);
+      }
+    }
+
+    if (harvestMonths) {
+      const months = harvestMonths
+        .split(",")
+        .map(Number)
+        .filter((n) => !Number.isNaN(n));
+      if (months.length > 0) {
+        const placeholders = months.map(() => "?").join(",");
+        query += ` AND p.id IN (
+          SELECT ph.plant_id FROM plant_harvest ph
+          JOIN harvest_months hm ON ph.harvest_id = hm.harvest_id
+          WHERE hm.month_id IN (${placeholders})
+        )`;
+        params.push(...months);
+      }
+    }
+
+    console.info("Executing SQL Query:", query, "with params:", params);
+    try {
+      const [rows] = await DatabaseClient.query(query, params);
+      return rows;
+    } catch (err) {
+      console.error("SQL Error:", err);
+      throw err;
+    }
+  }
   async read(id: number) {
     const [rows] = await DatabaseClient.query<Rows>(
       `SELECT 
