@@ -18,4 +18,11 @@ const getPlantDetails = (id: string | undefined) => {
     .catch((error) => console.error(error));
 };
 
-export { getAllPlants, getPlantDetails };
+const getUserPlants = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/userplants`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
+export { getAllPlants, getPlantDetails, getUserPlants };

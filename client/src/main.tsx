@@ -9,7 +9,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
 //pages
-
+import Garden from "./pages/garden/Garden";
 import Homepage from "./pages/homepage/Homepage";
 import PlantDetails from "./pages/plantDetails/PlantDetails";
 import Plants from "./pages/plants/Plants";
@@ -18,6 +18,7 @@ import Plants from "./pages/plants/Plants";
 
 import { getAllPlants } from "./services/request";
 import { getPlantDetails } from "./services/request";
+import { getUserPlants } from "./services/request";
 /* ************************************************************************* */
 
 // Create router configuration with routes
@@ -39,6 +40,12 @@ const router = createBrowserRouter([
       {
         path: "/plants",
         element: <Plants />,
+        loader: getAllPlants,
+      },
+      {
+        path: "/my-garden",
+        element: <Garden />,
+        loader: getUserPlants,
       },
     ],
   },

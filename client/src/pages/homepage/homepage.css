@@ -78,7 +78,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  header {
+  .homepage header {
     background-size: 100vw;
     height: 80vh;
   }
@@ -97,6 +97,8 @@
       height: 60%;
       justify-content: space-around;
       justify-self: center;
+      gap: 1.6rem;
+      margin-right: 4rem;
     }
   }
   .homepage section:nth-of-type(2) {

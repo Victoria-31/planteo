@@ -24,7 +24,11 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ isOpen, onClose }) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/my-garden" className="nav-link">
+          <NavLink
+            to="/my-garden"
+            className="nav-link"
+            onClick={handleLinkClick}
+          >
             Mon jardin
           </NavLink>
         </li>

@@ -11,7 +11,7 @@ interface Plant {
 
 export default function Homepage() {
   const plants = useLoaderData() as Plant[];
-  console.info(plants);
+
   return (
     <main className="homepage">
       <header>
