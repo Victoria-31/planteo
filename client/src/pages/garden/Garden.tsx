@@ -1,4 +1,7 @@
 import "./garden.css";
+import axios from "axios";
+import { useRevalidator } from "react-router-dom";
+
 import { useLoaderData } from "react-router-dom";
 import PlantCard from "../../components/plantCard/PlantCard";
 interface Plant {
@@ -11,6 +14,19 @@ interface Plant {
 
 export default function Garden() {
   const plants = useLoaderData() as Plant[];
+  const { revalidate } = useRevalidator();
+  const deletePlants = (id: number) => {
+    if (window.confirm("Voulez-vous vraiment supprimer cette offre ?")) {
+      axios
+        .delete(`${import.meta.env.VITE_API_URL}/api/userplants/${id}`)
+        .then(() => {
+          revalidate();
+        })
+        .catch((error) => {
+          console.error("Erreur lors de l'ajout de l'offre :", error);
+        });
+    }
+  };
   return (
     <main className="garden">
       <header>
@@ -27,7 +43,9 @@ export default function Garden() {
               <PlantCard plant={plant} />
               <div>
                 <button type="button">Modifier</button>
-                <button type="button">Supprimer</button>
+                <button type="button" onClick={() => deletePlants(plant.id)}>
+                  Supprimer
+                </button>
               </div>
             </section>
           ))}

@@ -35,7 +35,20 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
+const destroy: RequestHandler = async (req, res, next) => {
+  try {
+    const plantUserId = Number(req.params.id);
+
+    await plantUserRepository.delete(plantUserId);
+
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
 export default {
   browse,
   add,
+  destroy,
 };

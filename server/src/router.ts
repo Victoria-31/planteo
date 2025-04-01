@@ -16,6 +16,7 @@ router.get("/api/plants/:id", plantAction.read);
 // user plant
 router.get("/api/userplants", plantUserAction.browse);
 router.post("/api/userplants", plantUserAction.add);
+router.delete("/api/userplants/:id", plantUserAction.destroy);
 /* ************************************************************************* */
 
 export default router;

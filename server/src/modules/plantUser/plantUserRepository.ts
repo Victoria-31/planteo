@@ -27,6 +27,14 @@ JOIN earth e ON p.earth_id = e.id;
 
     return result.insertId;
   }
+  async delete(id: number) {
+    const [result] = await DatabaseClient.query<Result>(
+      "delete from plantuser where plant_id = ?",
+      [id],
+    );
+
+    return result.affectedRows;
+  }
 }
 
 export default new PlantUserRepository();
