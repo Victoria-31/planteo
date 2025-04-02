@@ -11,8 +11,15 @@ interface Plant {
   earth_type: string;
 }
 
+interface EarthType {
+  type: string;
+}
+
 export default function Plants() {
-  const plants = useLoaderData() as Plant[];
+  const { plants, earthTypes } = useLoaderData() as {
+    plants: Plant[];
+    earthTypes: EarthType[];
+  };
   const navigate = useNavigate();
 
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -58,11 +65,11 @@ export default function Plants() {
           />
           <select value={earthType} onChange={handleEarthTypeChange}>
             <option value="">Sélectionner le type de terre</option>
-            <option value="Terre légère et bien drainée">
-              Terre légère et bien drainée
-            </option>
-            <option value="Terre argileuse">Terre argileuse</option>
-            <option value="Terre sableuse">Terre sableuse</option>
+            {earthTypes.map((earth) => (
+              <option key={earth.type} value={earth.type}>
+                {earth.type}
+              </option>
+            ))}
           </select>
         </article>
         <ul>

@@ -20,6 +20,7 @@ import { getAllPlants } from "./services/request";
 import { getPlantDetails } from "./services/request";
 import { getUserPlants } from "./services/request";
 import { getPlantsSearch } from "./services/request";
+import { getEarth } from "./services/request";
 /* ************************************************************************* */
 
 // Create router configuration with routes
@@ -45,7 +46,13 @@ const router = createBrowserRouter([
           const url = new URL(request.url);
           const earthType = url.searchParams.get("earth_type") || "";
           const name = url.searchParams.get("name") || "";
-          return getPlantsSearch(earthType, name);
+
+          const [plants, earthTypes] = await Promise.all([
+            getPlantsSearch(earthType, name),
+            getEarth(),
+          ]);
+
+          return { plants, earthTypes };
         },
       },
       {

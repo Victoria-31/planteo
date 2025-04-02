@@ -36,5 +36,17 @@ const getUserPlants = () => {
     .then((response) => response.data)
     .catch((error) => console.error(error));
 };
+const getEarth = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/earth`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
 
-export { getAllPlants, getPlantDetails, getUserPlants, getPlantsSearch };
+export {
+  getAllPlants,
+  getPlantDetails,
+  getUserPlants,
+  getPlantsSearch,
+  getEarth,
+};
