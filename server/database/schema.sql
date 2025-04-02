@@ -11,10 +11,10 @@ CREATE TABLE earth (
 );
 
 INSERT INTO earth (id, type) VALUES
-(1, 'Terre légère et bien drainée'),
+(1, 'Terre argileuse'),
 (2, 'Terre sableuse'),
 (3, 'Terre riche et humifère'),
-(4, 'Terre fraîche et meuble');
+(4, 'Terre limoneuse');
 
 
 CREATE TABLE month (
@@ -89,13 +89,13 @@ INSERT INTO month (name) VALUES
 ('Novembre'), ('Décembre');
 
 INSERT INTO plant (name, words, background, description, watering, earth_id) VALUES
-('Tomate', 'Soleil, Chaleur, Délicieuse, Facile 🍅', '/tomates.jpg', 'Une plante appréciant la chaleur et nécessitant du tuteurage.', 'Arrosage régulier 2 à 3 fois par semaine sans mouiller les feuilles', 1),
+('Tomate', 'Soleil, Chaleur, Délicieuse, Facile 🍅', '/tomates.jpg', 'Une plante appréciant la chaleur et nécessitant du tuteurage.', 'Arrosage régulier 2 à 3 fois par semaine sans mouiller les feuilles', 3),
 ('Carotte', 'Vitamines , Croquante , Santé, Racine 🥕', '/carottes.jpg', 'Une racine sucrée et croquante qui pousse sous terre.', 'Arrosage léger mais constant, une à deux fois par semaine', 2),
 ('Courgette', 'Rapide, Géante, Gourmande, Facile  🥒', '/courgettes.jpg', 'Une plante prolifique qui donne de nombreux fruits en été.', 'Arrosage abondant mais espacé, environ 2 fois par semaine', 3),
 ('Laitue', 'Fraîche , Croquante, Rapide, Délicate 🥬', '/laitue.jpg', 'Une salade à croissance rapide idéale pour les climats tempérés.', 'Arrosage fréquent et léger, tous les 2 jours', 4),
-('Poivron', 'Coloré, Doux, Soleil, Délicieux 🫑', '/poivron.jpg', 'Un légume fruit qui apprécie la chaleur et pousse lentement.', 'Arrosage modéré et régulier, 2 à 3 fois par semaine', 1),
+('Poivron', 'Coloré, Doux, Soleil, Délicieux 🫑', '/poivron.jpg', 'Un légume fruit qui apprécie la chaleur et pousse lentement.', 'Arrosage modéré et régulier, 2 à 3 fois par semaine', 3),
 ('Radis', 'Croquant, Rapide, Facile, Fraîcheur 🌱', '/radis.jpg', 'Une racine rapide à cultiver, idéale pour les débutants.', 'Arrosage fréquent mais léger, tous les 2 jours', 2),
-('Aubergine', 'Soleil, Riche, Délicate, Exotique 🍆', '/aubergine.jpg', 'Un légume méditerranéen nécessitant chaleur et patience.', 'Arrosage modéré, une à deux fois par semaine sans excès', 1),
+('Aubergine', 'Soleil, Riche, Délicate, Exotique 🍆', '/aubergine.jpg', 'Un légume méditerranéen nécessitant chaleur et patience.', 'Arrosage modéré, une à deux fois par semaine sans excès', 3),
 ('Fraise', 'Sucrée, Gourmande, Printemps, Facile 🍓', '/fraise.jpg', 'Un petit fruit rouge apprécié pour sa douceur.', 'Arrosage modéré, maintenir un sol humide, 2 fois par semaine', 3),
 ('Basilic', 'Aromatique, Soleil, Cuisine, Délicieux 🌿', '/basilic.jpg', 'Une plante aromatique très utilisée en cuisine.', 'Arrosage modéré, éviter les excès d’eau, tous les 3 jours', 1),
 ('Ciboulette', 'Parfumé, Rustique, Cuisine, Facile 🧄', '/ciboulette.jpg', 'Une herbe aromatique facile à cultiver en pot ou au jardin.', 'Arrosage léger et régulier, une fois par semaine', 3),
