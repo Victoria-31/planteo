@@ -38,44 +38,31 @@ class plantRepository {
         continue;
       }
 
-      if (Array.isArray(value)) {
+      if (Array.isArray(value) && value.length > 0) {
         const placeholders = value.map(() => "?").join(", ");
         conditionClauses.push(`${key} IN (${placeholders})`);
         queryParams.push(...value);
-      } else {
-        // Utilisez le nom de la colonne d'origine si `earth_type` est un alias
+      } else if (typeof value === "string" && value.trim() !== "") {
         if (key === "earth_type") {
           conditionClauses.push("e.type = ?");
+          queryParams.push(value);
+        } else if (key === "name") {
+          conditionClauses.push("p.name LIKE ?");
+          queryParams.push(`%${value}%`);
         } else {
           conditionClauses.push(`${key} = ?`);
+          queryParams.push(value);
         }
-        queryParams.push(value);
       }
     }
-
     if (conditionClauses.length > 0) {
       sql += ` WHERE ${conditionClauses.join(" AND ")}`;
     }
-
-    console.info("Generated SQL Query:", sql);
-    console.info("Query Parameters:", queryParams);
 
     const [rows] = await DatabaseClient.query<Rows>(sql, queryParams);
 
     return rows;
   }
-  // let sql = 'SELECT * FROM items';
-  // const conditions = [];
-  // const params = [];
-
-  // for (const [key, value] of Object.entries(req.query)) {
-  //   conditions.push(`${key} = ?`);
-  //   params.push(value);
-  // }
-
-  // if (conditions.length > 0) {
-  //   sql += ' WHERE ' + conditions.join(' AND ');
-  // }
 
   async read(id: number) {
     const [rows] = await DatabaseClient.query<Rows>(

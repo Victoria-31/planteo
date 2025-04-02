@@ -30,7 +30,6 @@ const browseByCategory: RequestHandler = async (req, res, next) => {
   try {
     const conditions: Record<string, string | string[]> = {};
 
-    // Parcourir les paramètres de la requête pour construire les conditions
     for (const [key, value] of Object.entries(req.query)) {
       if (typeof value === "string") {
         conditions[key] = value;
@@ -41,7 +40,6 @@ const browseByCategory: RequestHandler = async (req, res, next) => {
       }
     }
 
-    // Utiliser le repository pour lire les plantes avec les conditions
     const plants = await plantRepository.readByCategory(conditions);
     res.json(plants);
   } catch (err) {
