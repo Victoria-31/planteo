@@ -26,8 +26,31 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseByCategory: RequestHandler = async (req, res, next) => {
+  try {
+    const conditions: Record<string, string | string[]> = {};
+
+    // Parcourir les paramètres de la requête pour construire les conditions
+    for (const [key, value] of Object.entries(req.query)) {
+      if (typeof value === "string") {
+        conditions[key] = value;
+      } else if (Array.isArray(value)) {
+        conditions[key] = value.filter(
+          (v): v is string => typeof v === "string",
+        );
+      }
+    }
+
+    // Utiliser le repository pour lire les plantes avec les conditions
+    const plants = await plantRepository.readByCategory(conditions);
+    res.json(plants);
+  } catch (err) {
+    next(err);
+  }
+};
+
 export default {
   browse,
-
+  browseByCategory,
   read,
 };

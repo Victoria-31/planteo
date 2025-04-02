@@ -12,7 +12,7 @@ import plantUserAction from "./modules/plantUser/plantUserAction";
 
 router.get("/api/plants", plantAction.browse);
 router.get("/api/plants/:id", plantAction.read);
-
+router.get("/api/plants-search", plantAction.browseByCategory);
 // user plant
 router.get("/api/userplants", plantUserAction.browse);
 router.post("/api/userplants", plantUserAction.add);
