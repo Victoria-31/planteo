@@ -47,8 +47,35 @@ const browseByCategory: RequestHandler = async (req, res, next) => {
   }
 };
 
+const edit: RequestHandler = async (req, res, next) => {
+  try {
+    const plant = {
+      id: Number(req.params.id),
+      name: req.body.name,
+      words: req.body.words,
+      background: req.body.background,
+      description: req.body.description,
+      watering: req.body.watering,
+      earth_id: req.body.earth_id,
+      seedling_months: req.body.seedling_months,
+      harvest_months: req.body.harvest_months,
+    };
+
+    const affectedRows = await plantRepository.update(plant);
+
+    if (affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 export default {
   browse,
   browseByCategory,
+  edit,
   read,
 };
