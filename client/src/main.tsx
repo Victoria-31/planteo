@@ -9,11 +9,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
 //pages
+import EditPlant from "./pages/editPlant/EditPlant";
+
 import Garden from "./pages/garden/Garden";
 import Homepage from "./pages/homepage/Homepage";
 import PlantDetails from "./pages/plantDetails/PlantDetails";
 import Plants from "./pages/plants/Plants";
-
 //API
 
 import { getAllPlants } from "./services/request";
@@ -39,6 +40,16 @@ const router = createBrowserRouter([
         element: <PlantDetails />,
         loader: ({ params }) => getPlantDetails(params.id),
       },
+      {
+        path: "/edit-plant/:id",
+        element: <EditPlant />,
+        loader: async ({ params }) => {
+          const plant = await getPlantDetails(params.id);
+          const earthTypes = await getEarth();
+          return { plant, earthTypes };
+        },
+      },
+
       {
         path: "/plants",
         element: <Plants />,

@@ -14,8 +14,8 @@ interface Plant {
   description: string;
   watering: string;
   earth_type: string;
-  seedling_months?: string;
-  harvest_months?: string;
+  seedling_months: string;
+  harvest_months: string;
 }
 
 interface PlantUser {
@@ -33,12 +33,6 @@ export default function PlantDetails() {
     plant_id: plant.id,
   };
 
-  // const validator = {
-  //   revalidate: () => {
-  //     console.info("revalidate");
-  //   },
-  // };
-
   const handleAddPlant = async (newPlantUser: PlantUser) => {
     try {
       await axios.post(
@@ -47,7 +41,6 @@ export default function PlantDetails() {
       );
       setErrorMessage("");
 
-      // validator.revalidate();
       toast.success("Offre ajoutée avec succès !", {
         position: "bottom-center",
         autoClose: 2000,
@@ -103,17 +96,12 @@ export default function PlantDetails() {
           <p>
             <strong>Type de terre :</strong> {plant.earth_type}
           </p>
-
-          {plant.seedling_months && (
-            <p>
-              <strong>🫘 Période de semis :</strong> {plant.seedling_months}
-            </p>
-          )}
-          {plant.harvest_months && (
-            <p>
-              <strong>Période de récolte :</strong> {plant.harvest_months}
-            </p>
-          )}
+          <p>
+            <strong>🫘 Période de semis :</strong> {plant.seedling_months}
+          </p>
+          <p>
+            <strong>Période de récolte :</strong> {plant.harvest_months}
+          </p>
         </article>
       </section>
       <p className="errorMessage">{errorMessage ? errorMessage : ""}</p>

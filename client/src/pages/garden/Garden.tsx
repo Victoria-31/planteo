@@ -1,6 +1,6 @@
 import "./garden.css";
 import axios from "axios";
-import { useRevalidator } from "react-router-dom";
+import { Link, useRevalidator } from "react-router-dom";
 
 import { useLoaderData } from "react-router-dom";
 import PlantCard from "../../components/plantCard/PlantCard";
@@ -35,14 +35,14 @@ export default function Garden() {
       <section className="my-plants">
         <article className="explore">
           <h2>Mes plantes 🌱</h2>
-          <img className="arrow" src="./arrow.svg" alt="" />
+          <img className="arrow" src="./arrow.svg" alt="Arrow" />
         </article>
         <section className="scroll-card-container">
           {plants.map((plant) => (
             <section key={plant.id}>
               <PlantCard plant={plant} />
               <div>
-                <button type="button">Modifier</button>
+                <Link to={`/edit-plant/${plant.id}`}>Modifier</Link>
                 <button type="button" onClick={() => deletePlants(plant.id)}>
                   Supprimer
                 </button>
