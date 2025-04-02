@@ -19,6 +19,7 @@ import Plants from "./pages/plants/Plants";
 import { getAllPlants } from "./services/request";
 import { getPlantDetails } from "./services/request";
 import { getUserPlants } from "./services/request";
+import { getPlantsSearch } from "./services/request";
 /* ************************************************************************* */
 
 // Create router configuration with routes
@@ -40,7 +41,12 @@ const router = createBrowserRouter([
       {
         path: "/plants",
         element: <Plants />,
-        loader: getAllPlants,
+        loader: async ({ request }) => {
+          const url = new URL(request.url);
+          const earthType = url.searchParams.get("earth_type") || "";
+          const name = url.searchParams.get("name") || "";
+          return getPlantsSearch(earthType, name);
+        },
       },
       {
         path: "/my-garden",
