@@ -29,10 +29,6 @@ export default function PlantDetails() {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  // const seedlingMonths = plant.seedling_months.split(",").join(", ");
-  console.info("typeof plant.seedling_months", typeof plant.seedling_months);
-  console.info("Contenu de seedling_months :", plant.seedling_months);
-  console.info("Contenu de harvest_months :", plant.harvest_months);
   const newPlantUser = {
     plant_id: plant.id,
   };
