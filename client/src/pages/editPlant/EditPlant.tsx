@@ -26,7 +26,6 @@ export default function EditPlant() {
     plant: Plant;
     earthTypes: EarthType[];
   };
-  console.info(earthTypes);
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -70,7 +69,6 @@ export default function EditPlant() {
   };
   const handleEditPlant = async (editPlant: Plant) => {
     try {
-      console.info("Modification de la plante :", editPlant);
       await axios.put(
         `${import.meta.env.VITE_API_URL}/api/plants/${plant.id}`,
         editPlant,

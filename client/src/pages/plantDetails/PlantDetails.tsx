@@ -29,6 +29,10 @@ export default function PlantDetails() {
 
   const [errorMessage, setErrorMessage] = useState("");
 
+  // const seedlingMonths = plant.seedling_months.split(",").join(", ");
+  console.info("typeof plant.seedling_months", typeof plant.seedling_months);
+  console.info("Contenu de seedling_months :", plant.seedling_months);
+  console.info("Contenu de harvest_months :", plant.harvest_months);
   const newPlantUser = {
     plant_id: plant.id,
   };
@@ -97,10 +101,12 @@ export default function PlantDetails() {
             <strong>Type de terre :</strong> {plant.earth_type}
           </p>
           <p>
-            <strong>🫘 Période de semis :</strong> {plant.seedling_months}
+            <strong>🫘 Période de semis :</strong>{" "}
+            {plant.seedling_months[0].split(",").join(", ")}
           </p>
           <p>
-            <strong>Période de récolte :</strong> {plant.harvest_months}
+            <strong>Période de récolte :</strong>{" "}
+            {plant.harvest_months[0].split(",").join(", ")}
           </p>
         </article>
       </section>
