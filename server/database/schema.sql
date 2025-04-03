@@ -81,7 +81,8 @@ CREATE TABLE plant_harvest (
 CREATE TABLE userplant (
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     user_id INT UNSIGNED NOT NULL,
-    plant_id INT UNSIGNED NOT NULL,
+    plant_id INT UNSIGNED NOT NULL, 
+     UNIQUE (user_id, plant_id),
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
     FOREIGN KEY (plant_id) REFERENCES plant(id) ON DELETE CASCADE
 );

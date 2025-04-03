@@ -59,7 +59,7 @@ export default function PlantDetails() {
       if (axios.isAxiosError(error)) {
         console.error("Erreur lors de l'ajout de la plante :", error);
         setErrorMessage(error.response?.data.error);
-        toast.error(errorMessage, {
+        toast.error(error.response?.data.error, {
           position: "bottom-center",
           autoClose: 2000,
           hideProgressBar: false,
