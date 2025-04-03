@@ -2,8 +2,15 @@ CREATE TABLE user (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL UNIQUE,
+  role VARCHAR(100) NOT NULL DEFAULT "user",
   hashed_password VARCHAR(200) NOT NULL
 );
+
+INSERT INTO user (name, email, role, hashed_password) VALUES
+
+('Julian', 'julian.delaplaya@email.com', 'user', '$argon2id$v=19$m=65536,t=3,p=4$0gSirVxaZ5//6QdEjccD1Q$wuF1+3HOhIYkJXfD+lDHoJXPDKjnW77pLTikjkhfyd0'),
+('Jacky', 'jack.martin@email.com','user', '$argon2id$v=19$m=65536,t=3,p=4$SYqQzLj4Mlc/F6/5rQ8ywQ$lshrje56AtJTXEQkvGKR52tqaeAdu3I6QuR3BHhSo7s'),
+('Victoria', 'admin@email.com','admin', '$argon2id$v=19$m=65536,t=3,p=4$SYqQzLj4Mlc/F6/5rQ8ywQ$lshrje56AtJTXEQkvGKR52tqaeAdu3I6QuR3BHhSo7s');
 
 CREATE TABLE earth (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,

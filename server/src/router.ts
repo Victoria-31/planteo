@@ -7,10 +7,17 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Define item-related routes
+import authAction from "./middlewares/authAction";
 import formPlant from "./middlewares/formPlant";
 import earthAction from "./modules/earth/earthAction";
 import plantAction from "./modules/plant/plantAction";
 import plantUserAction from "./modules/plantUser/plantUserAction";
+
+/* LOGIN ************************************************************************* */
+
+router.post("/api/login", authAction.login);
+
+//plant
 
 router.get("/api/plants", plantAction.browse);
 router.get("/api/plants/:id", plantAction.read);
