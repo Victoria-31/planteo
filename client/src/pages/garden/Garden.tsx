@@ -30,7 +30,7 @@ export default function Garden() {
   const [selectedMonth, setSelectedMonth] = useState(null as null | string);
 
   const deletePlants = (id: number) => {
-    if (window.confirm("Voulez-vous vraiment supprimer cette offre ?")) {
+    if (window.confirm("Voulez-vous vraiment supprimer cette plante ?")) {
       axios
         .delete(`${import.meta.env.VITE_API_URL}/api/userplants/${id}`, {
           withCredentials: true,
@@ -76,10 +76,8 @@ export default function Garden() {
           ))}
         </section>
       </section>
-      <section>
-        <article className="explore">
-          <h2>Que faire ? 🐸 </h2>
-        </article>
+      <section className="whatDo">
+        <h2>Que faire ? 🐸 </h2>
         <section className="scroll-card-container">
           {months.map((month) => (
             <article key={month}>

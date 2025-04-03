@@ -51,6 +51,52 @@
     border: none;
   }
 }
+.garden h3 {
+  text-align: center;
+}
+.garden .whatDo {
+  padding: 2rem 1rem 1rem 1rem;
+
+  & button {
+    background-color: var(--primary);
+    color: var(--light);
+    border-radius: 8px;
+    padding: 0.4rem 1rem;
+    margin-bottom: 1rem;
+    border: none;
+  }
+
+  & h2 {
+    color: var(--primary);
+    padding-bottom: 1rem;
+  }
+  /*
+  & .arrow {
+    display: none;
+  }
+  & ul {
+    display: flex;
+  }
+
+  & p:first-of-type {
+    padding-top: 0.6rem;
+  }
+  & div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+  & button {
+    background-color: var(--primary);
+    color: var(--light);
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    width: 40%;
+    border: none;
+  } */
+}
 
 /* CSS pour section suivante */
 

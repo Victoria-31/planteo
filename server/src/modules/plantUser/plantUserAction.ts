@@ -1,9 +1,10 @@
 import type { RequestHandler } from "express";
 import plantUserRepository from "./plantUserRepository";
 
-const browse: RequestHandler = async (req, res, next) => {
+const browsePlantByUser: RequestHandler = async (req, res, next) => {
   try {
-    const plantUser = await plantUserRepository.readAll();
+    const userId = req.user.id;
+    const plantUser = await plantUserRepository.readAll(userId);
 
     res.json(plantUser);
   } catch (err) {
@@ -14,6 +15,8 @@ const browse: RequestHandler = async (req, res, next) => {
 const add: RequestHandler = async (req, res, next) => {
   try {
     const newPlantUser = {
+      user_id: req.user.id,
+
       plant_id: req.body.plant_id,
     };
 
@@ -37,9 +40,10 @@ const add: RequestHandler = async (req, res, next) => {
 
 const destroy: RequestHandler = async (req, res, next) => {
   try {
-    const plantUserId = Number(req.params.id);
+    const plantId = Number(req.params.id);
+    const userId = req.user.id;
 
-    await plantUserRepository.delete(plantUserId);
+    await plantUserRepository.delete(plantId, userId);
 
     res.sendStatus(204);
   } catch (err) {
@@ -48,7 +52,7 @@ const destroy: RequestHandler = async (req, res, next) => {
 };
 
 export default {
-  browse,
+  browsePlantByUser,
   add,
   destroy,
 };

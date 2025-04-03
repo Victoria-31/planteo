@@ -100,6 +100,13 @@ const verifyUser: RequestHandler = async (req, res, next) => {
     }
 
     if (resultPayload.role === "user") {
+      req.user = {
+        password: resultPayload.hashed_password,
+        id: resultPayload.id,
+        email: resultPayload.email,
+        role: resultPayload.role,
+      };
+
       next();
     }
   } catch (error) {
@@ -116,7 +123,6 @@ const verifyConnect: RequestHandler = async (req, res, next) => {
     const { auth } = req.cookies;
 
     if (!auth) {
-      console.info("cc");
       res.sendStatus(403);
       return;
     }
@@ -130,6 +136,12 @@ const verifyConnect: RequestHandler = async (req, res, next) => {
       res.sendStatus(403);
       return;
     }
+    req.user = {
+      password: resultPayload.hashed_password,
+      id: resultPayload.id,
+      email: resultPayload.email,
+      role: resultPayload.role,
+    };
     next();
   } catch (error) {
     next(error);

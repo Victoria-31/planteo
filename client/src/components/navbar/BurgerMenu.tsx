@@ -5,11 +5,6 @@ import { useState } from "react";
 import { useAuth } from "../../services/AuthContext";
 import Login from "../login/Login";
 
-interface BurgerMenuProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
 const BurgerMenu: React.FC<BurgerMenuProps> = ({ isOpen, onClose }) => {
   const handleLinkClick = () => {
     onClose();

@@ -78,10 +78,12 @@ CREATE TABLE plant_harvest (
   FOREIGN KEY (harvest_id) REFERENCES harvest(id) ON DELETE CASCADE
 );
 
-CREATE TABLE plantuser (
+CREATE TABLE userplant (
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  plant_id INT UNSIGNED NOT NULL UNIQUE,
-  FOREIGN KEY (plant_id) REFERENCES plant(id) ON DELETE CASCADE
+    user_id INT UNSIGNED NOT NULL,
+    plant_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (plant_id) REFERENCES plant(id) ON DELETE CASCADE
 );
 
 INSERT INTO month (name) VALUES
@@ -166,4 +168,5 @@ INSERT INTO plant_harvest (plant_id, harvest_id) VALUES
 (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10), (11, 11), (12, 12),
 (13, 13), (14, 14), (15, 15), (16, 16), (17, 17), (18, 18), (19, 19);
 
-INSERT INTO plantuser (plant_id) VALUES (1);
+INSERT INTO userplant (user_id, plant_id) VALUES
+(1, 1);

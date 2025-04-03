@@ -31,7 +31,11 @@ router.put(
 );
 
 // user plant
-router.get("/api/userplants", authAction.verifyConnect, plantUserAction.browse);
+router.get(
+  "/api/userplants",
+  authAction.verifyConnect,
+  plantUserAction.browsePlantByUser,
+);
 router.post("/api/userplants", authAction.verifyConnect, plantUserAction.add);
 router.delete(
   "/api/userplants/:id",

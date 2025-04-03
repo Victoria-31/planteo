@@ -1,0 +1,14 @@
+.month-card {
+  border: 2px solid var(--second);
+  border-radius: 32px 0 32px 0;
+  margin: 2rem;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: space-around;
+  & h4 {
+    padding-bottom: 1rem;
+  }
+  & ul {
+    width: 40%;
+  }
+}
