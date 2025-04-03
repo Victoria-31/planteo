@@ -13,9 +13,10 @@ import earthAction from "./modules/earth/earthAction";
 import plantAction from "./modules/plant/plantAction";
 import plantUserAction from "./modules/plantUser/plantUserAction";
 
-/* LOGIN ************************************************************************* */
+/* LOGIN LOGOUT ************************************************************************* */
 
 router.post("/api/login", authAction.login);
+router.get("/api/logout", authAction.logout);
 
 //plant
 
