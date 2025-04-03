@@ -1,9 +1,10 @@
 import "./garden.css";
 import axios from "axios";
 import { Link, useRevalidator } from "react-router-dom";
-
 import { useLoaderData } from "react-router-dom";
 import PlantCard from "../../components/plantCard/PlantCard";
+import { useAuth } from "../../services/AuthContext";
+
 interface Plant {
   id: number;
   name: string;
@@ -15,6 +16,8 @@ interface Plant {
 export default function Garden() {
   const plants = useLoaderData() as Plant[];
   const { revalidate } = useRevalidator();
+
+  const { role } = useAuth();
   const deletePlants = (id: number) => {
     if (window.confirm("Voulez-vous vraiment supprimer cette offre ?")) {
       axios
@@ -44,7 +47,11 @@ export default function Garden() {
             <section key={plant.id}>
               <PlantCard plant={plant} />
               <div>
-                <Link to={`/edit-plant/${plant.id}`}>Modifier</Link>
+                {role === "admin" ? (
+                  <Link to={`/edit-plant/${plant.id}`}>Modifier</Link>
+                ) : (
+                  ""
+                )}
                 <button type="button" onClick={() => deletePlants(plant.id)}>
                   Supprimer
                 </button>

@@ -72,6 +72,9 @@ export default function EditPlant() {
       await axios.put(
         `${import.meta.env.VITE_API_URL}/api/plants/${plant.id}`,
         editPlant,
+        {
+          withCredentials: true,
+        },
       );
       setErrorMessage("");
 
