@@ -1,23 +1,34 @@
 import "./garden.css";
 import axios from "axios";
+import { useState } from "react";
 import { Link, useRevalidator } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
+import MonthCard from "../../components/monthCard/MonthCard";
 import PlantCard from "../../components/plantCard/PlantCard";
 import { useAuth } from "../../services/AuthContext";
 
-interface Plant {
-  id: number;
-  name: string;
-  words: string;
-  background: string;
-  earth_type: string;
-}
-
 export default function Garden() {
+  const months = [
+    "Janvier",
+    "Février",
+    "Mars",
+    "Avril",
+    "Mai",
+    "Juin",
+    "Juillet",
+    "Août",
+    "Septembre",
+    "Octobre",
+    "Novembre",
+    "Décembre",
+  ];
   const plants = useLoaderData() as Plant[];
   const { revalidate } = useRevalidator();
 
   const { role } = useAuth();
+
+  const [selectedMonth, setSelectedMonth] = useState(null as null | string);
+
   const deletePlants = (id: number) => {
     if (window.confirm("Voulez-vous vraiment supprimer cette offre ?")) {
       axios
@@ -32,6 +43,11 @@ export default function Garden() {
         });
     }
   };
+
+  const displayCard = (month: string) => {
+    setSelectedMonth(month);
+  };
+
   return (
     <main className="garden">
       <header>
@@ -60,6 +76,21 @@ export default function Garden() {
           ))}
         </section>
       </section>
+      <section>
+        <article className="explore">
+          <h2>Que faire ? 🐸 </h2>
+        </article>
+        <section className="scroll-card-container">
+          {months.map((month) => (
+            <article key={month}>
+              <button type="button" onClick={() => displayCard(month)}>
+                {month}
+              </button>
+            </article>
+          ))}
+        </section>
+      </section>
+      {selectedMonth && <MonthCard month={selectedMonth} plants={plants} />}
     </main>
   );
 }

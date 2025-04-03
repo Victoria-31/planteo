@@ -1,13 +1,6 @@
 import "./homePage.css";
 import { useLoaderData } from "react-router-dom";
 import PlantCard from "../../components/plantCard/PlantCard";
-interface Plant {
-  id: number;
-  name: string;
-  words: string;
-  background: string;
-  earth_type: string;
-}
 
 export default function Homepage() {
   const plants = useLoaderData() as Plant[];

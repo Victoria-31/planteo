@@ -7,7 +7,6 @@ CREATE TABLE user (
 );
 
 INSERT INTO user (name, email, role, hashed_password) VALUES
-
 ('Julian', 'julian.delaplaya@email.com', 'user', '$argon2id$v=19$m=65536,t=3,p=4$0gSirVxaZ5//6QdEjccD1Q$wuF1+3HOhIYkJXfD+lDHoJXPDKjnW77pLTikjkhfyd0'),
 ('Jacky', 'jack.martin@email.com','user', '$argon2id$v=19$m=65536,t=3,p=4$SYqQzLj4Mlc/F6/5rQ8ywQ$lshrje56AtJTXEQkvGKR52tqaeAdu3I6QuR3BHhSo7s'),
 ('Victoria', 'admin@email.com','admin', '$argon2id$v=19$m=65536,t=3,p=4$SYqQzLj4Mlc/F6/5rQ8ywQ$lshrje56AtJTXEQkvGKR52tqaeAdu3I6QuR3BHhSo7s');
@@ -22,7 +21,6 @@ INSERT INTO earth (id, type) VALUES
 (2, 'Terre sableuse'),
 (3, 'Terre riche et humifère'),
 (4, 'Terre limoneuse');
-
 
 CREATE TABLE month (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -86,13 +84,9 @@ CREATE TABLE plantuser (
   FOREIGN KEY (plant_id) REFERENCES plant(id) ON DELETE CASCADE
 );
 
-
-
-
-
-INSERT INTO month (name) VALUES 
-('Janvier'), ('Février'), ('Mars'), ('Avril'), ('Mai'), 
-('Juin'), ('Juillet'), ('Août'), ('Septembre'), ('Octobre'), 
+INSERT INTO month (name) VALUES
+('Janvier'), ('Février'), ('Mars'), ('Avril'), ('Mai'),
+('Juin'), ('Juillet'), ('Août'), ('Septembre'), ('Octobre'),
 ('Novembre'), ('Décembre');
 
 INSERT INTO plant (name, words, background, description, watering, earth_id) VALUES
@@ -108,7 +102,7 @@ INSERT INTO plant (name, words, background, description, watering, earth_id) VAL
 ('Ciboulette', 'Parfumé, Rustique, Cuisine, Facile 🧄', '/ciboulette.jpg', 'Une herbe aromatique facile à cultiver en pot ou au jardin.', 'Arrosage léger et régulier, une fois par semaine', 3),
 ('Menthe', 'Fraîcheur, Thé, Cuisine, Invasive 🌱', '/menthe.jpg', 'Une plante aromatique qui pousse très vite et envahit son espace.', 'Arrosage fréquent, aime l’humidité, tous les 2 jours', 4),
 ('Oignon', 'Condiment, Rustique, Facile, Incontournable 🧅', '/oignon.jpg', 'Une plante bulbeuse essentielle en cuisine.', 'Arrosage léger, surtout en début de croissance, une fois par semaine', 2),
-('Pomme de terre', 'Féculent, Rustique, Productif, Facile 🥔', '/pdt.jpg', 'Un légume facile à cultiver, très nourrissant.', 'Arrosage modéré, éviter l’excès d’eau, une fois par semaine', 2),
+('Pomme de Terre', 'Féculent, Rustique, Productif, Facile 🥔', '/pdt.jpg', 'Un légume facile à cultiver, très nourrissant.', 'Arrosage modéré, éviter l’excès d’eau, une fois par semaine', 2),
 ('Pois', 'Légumineuse, Grimpante, Sucrée, Délicieuse 🌿', '/pois.jpg', 'Un légume grimpant qui enrichit le sol en azote.', 'Arrosage fréquent, surtout en période de floraison, tous les 3 jours', 3),
 ('Haricot', 'Rapide, Facile, Riche, Grimpant 🌱', '/haricot.jpg', 'Un légume facile à cultiver, qu’il soit nain ou grimpant.', 'Arrosage modéré, éviter l’excès d’eau, 2 fois par semaine', 3),
 ('Épinard', 'Feuillu, Santé, Rapide, Facile 🌿', '/epinard.jpg', 'Une plante à feuilles riches en fer et en vitamines.', 'Arrosage fréquent pour maintenir un sol frais, tous les 2 jours', 4),
@@ -116,24 +110,23 @@ INSERT INTO plant (name, words, background, description, watering, earth_id) VAL
 ('Chou-fleur', 'Délicat, Blanc, Cuisine, Doux 🥬', '/choufleur.jpg', 'Un légume délicat qui nécessite une bonne nutrition du sol.', 'Arrosage modéré, maintenir un sol humide, 2 fois par semaine', 4),
 ('Betterave', 'Sucrée, Santé, Racine, Colorée 🍠', '/betterave.jpg', 'Un légume racine coloré, apprécié pour ses bienfaits.', 'Arrosage régulier mais léger, une fois par semaine', 2);
 
-
 INSERT INTO seedling (id) VALUES (1), (2), (3), (4), (5), (6), (7), (8), (9), (10), (11), (12), (13), (14), (15), (16), (17), (18), (19);
 
 INSERT INTO seedling_months (seedling_id, month_id) VALUES
 (1,2), (1,3), (1,4), (1,5),
-(2,2), (2,3), (2,4), (2,5), (2,6), (2,7),
- (3,4), (3,5), (3,6), 
+(2,2), (2,3), (2,4), (2,5), (2,6), (2,7), (2,8), (2,9), (2,10),
+(3,3), (3,4), (3,5),
 (4,2), (4,3), (4,4), (4,5), (4,6), (4,7), (4,8), (4,9), (4,10),
 (5, 3), (5, 4), (5, 5),
-(6, 2), (6, 3), (6, 4),
-(7, 4), (7, 5), (7, 6),
-(8, 1), (8, 2), (8, 3), (8, 4),
-(9, 3), (9, 4), (9, 5),
+(6, 2), (6, 3), (6, 4), (6, 7), (6, 8), (6, 9),
+(7, 1), (7, 2), (7, 3), (7, 4),
+(8, 3), (8, 4), (8, 5),
+(9, 2), (9, 3), (9, 4),
 (10, 2), (10, 3), (10, 4),
 (11, 4), (11, 5), (11, 6),
 (12, 1), (12, 2), (12, 3),
 (13, 2), (13, 3), (13, 4),
-(14, 3), (14, 4), (14, 5),
+(14, 4), (14, 5), (14, 6),
 (15, 4), (15, 5), (15, 6),
 (16, 3), (16, 4), (16, 5),
 (17, 2), (17, 3), (17, 4),
@@ -144,9 +137,9 @@ INSERT INTO harvest (id) VALUES (1), (2), (3), (4), (5), (6), (7), (8), (9), (10
 
 INSERT INTO harvest_months (harvest_id, month_id) VALUES
 (1,6), (1,7), (1,8), (1,9), (1,10),
-(2,5), (2,6), (2,7), (2,8), (2,9), (2,10), (2,11), 
- (3,6), (3,7), (3,8), (3,9), (3,10), (3,11),
- (4,3), (4,4), (4,5), (4,6), (4,7), (4,8), (4,9), (4,10),
+(2,5), (2,6), (2,7), (2,8), (2,9), (2,10), (2,11),
+(3,6), (3,7), (3,8), (3,9), (3,10), (3,11),
+(4,3), (4,4), (4,5), (4,6), (4,7), (4,8), (4,9), (4,10),
 (5, 6), (5, 7), (5, 8),
 (6, 7), (6, 8), (6, 9),
 (7, 8), (7, 9), (7, 10),
@@ -162,13 +155,14 @@ INSERT INTO harvest_months (harvest_id, month_id) VALUES
 (17, 6), (17, 7), (17, 8),
 (18, 7), (18, 8), (18, 9),
 (19, 8), (19, 9), (19, 10);
+
 INSERT INTO plant_seedling (plant_id, seedling_id) VALUES
-(1, 1), (2, 2), (3, 3), (4, 4), 
+(1, 1), (2, 2), (3, 3), (4, 4),
 (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10), (11, 11), (12, 12),
 (13, 13), (14, 14), (15, 15), (16, 16), (17, 17), (18, 18), (19, 19);
 
 INSERT INTO plant_harvest (plant_id, harvest_id) VALUES
-(1, 1), (2, 2), (3, 3), (4, 4), 
+(1, 1), (2, 2), (3, 3), (4, 4),
 (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10), (11, 11), (12, 12),
 (13, 13), (14, 14), (15, 15), (16, 16), (17, 17), (18, 18), (19, 19);
 

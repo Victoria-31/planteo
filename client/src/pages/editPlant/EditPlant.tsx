@@ -16,10 +16,6 @@ interface Plant {
   seedling_months: number[];
   harvest_months: number[];
 }
-interface EarthType {
-  id: number;
-  type: string;
-}
 
 export default function EditPlant() {
   const { plant, earthTypes } = useLoaderData() as {

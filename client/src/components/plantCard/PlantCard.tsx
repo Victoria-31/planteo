@@ -1,16 +1,5 @@
 import "./plantCard.css";
 import { Link } from "react-router-dom";
-interface Plant {
-  id: number;
-  name: string;
-  words: string;
-  background: string;
-  earth_type: string;
-}
-
-interface PlantCardProps {
-  plant: Plant;
-}
 
 export default function PlantCard({ plant }: PlantCardProps) {
   return (
