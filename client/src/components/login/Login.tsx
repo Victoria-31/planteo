@@ -3,6 +3,7 @@ import type { FormEventHandler } from "react";
 import { useState } from "react";
 import SvgIcons from "./SvgIcons";
 import "./login.css";
+import { useAuth } from "../../services/AuthContext";
 
 const icon = {
   visible: {
@@ -21,6 +22,7 @@ export default function Login({ isOpen, onClose }: LoginProps) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [error, setError] = useState(() => null as string | null);
   const [showPassword, setShowPassword] = useState(false);
+  const { setRole } = useAuth();
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -43,7 +45,8 @@ export default function Login({ isOpen, onClose }: LoginProps) {
         .post(`${import.meta.env.VITE_API_URL}/api/login`, credentials, {
           withCredentials: true,
         })
-        .then(() => {
+        .then((response) => {
+          setRole(response.data.role);
           onClose();
           onClose();
         });

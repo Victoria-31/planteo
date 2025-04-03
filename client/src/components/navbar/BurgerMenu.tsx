@@ -1,6 +1,8 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./burgerMenu.css";
+import axios from "axios";
 import { useState } from "react";
+import { useAuth } from "../../services/AuthContext";
 import Login from "../login/Login";
 
 interface BurgerMenuProps {
@@ -12,6 +14,44 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ isOpen, onClose }) => {
   const handleLinkClick = () => {
     onClose();
   };
+
+  const { role, setRole } = useAuth();
+  const navigate = useNavigate();
+
+  const disconnect = async () => {
+    try {
+      await axios
+        .get(`${import.meta.env.VITE_API_URL}/api/logout`, {
+          withCredentials: true,
+        })
+        .then(() => {
+          onClose();
+          setRole("anonymous");
+          navigate("/");
+        });
+    } catch (err) {
+      console.error("Request failed:", err);
+    }
+  };
+
+  const [activeLink, setActiveLink] = useState(String);
+  const links = [
+    {
+      name: "Accueil",
+      path: "/",
+      role: ["anonymous", "user", "admin"],
+    },
+    {
+      name: "Catalogue",
+      path: "/plants",
+      role: ["anonymous", "user", "admin"],
+    },
+    {
+      name: "Mon jardin",
+      path: "/my-garden",
+      role: ["user", "admin"],
+    },
+  ];
 
   //Login
   const [isModalLoginOpen, setIsModalLoginOpen] = useState(false);
@@ -26,27 +66,28 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ isOpen, onClose }) => {
 
   return (
     <div className={`burger-menu ${isOpen ? "open" : ""}`}>
-      <ul>
-        <li>
-          <NavLink to="/" className="nav-link" onClick={handleLinkClick}>
-            Accueil
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/plants" className="nav-link" onClick={handleLinkClick}>
-            Catalogue
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/my-garden"
-            className="nav-link"
-            onClick={handleLinkClick}
+      <ul className="menuDesktop">
+        {links
+          .filter((link) => link.role.includes(role))
+          .map((link) => (
+            <li key={link.name}>
+              <NavLink to={link.path} onClick={handleLinkClick}>
+                {link.name}
+              </NavLink>
+            </li>
+          ))}
+        {role !== "anonymous" ? (
+          <button
+            type="button"
+            className={activeLink === "disconnect" ? "active" : ""}
+            onClick={() => {
+              setActiveLink("disconnect");
+              disconnect();
+            }}
           >
-            Mon jardin
-          </NavLink>
-        </li>
-        <li>
+            Se déconnecter
+          </button>
+        ) : (
           <button
             type="button"
             onClick={() => {
@@ -55,9 +96,10 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ isOpen, onClose }) => {
           >
             Se connecter
           </button>
-          <Login isOpen={isModalLoginOpen} onClose={closeModalLogin} />
-        </li>
+        )}
       </ul>
+
+      <Login isOpen={isModalLoginOpen} onClose={closeModalLogin} />
     </div>
   );
 };

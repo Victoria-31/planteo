@@ -9,6 +9,10 @@
 
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 
+  & a {
+    color: var(--primary);
+    font-size: 1.6rem;
+  }
   & ul {
     display: flex;
     flex-direction: column;
@@ -19,8 +23,15 @@
     & li {
       padding-left: 2rem;
     }
+    & button {
+      text-align: left;
+      font-size: 1.6rem;
+      padding-top: 0.4rem;
+      padding-left: 2rem;
+    }
   }
 }
+
 .burger-icon {
   color: var(--light);
 }

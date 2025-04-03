@@ -8,9 +8,11 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // Import the main app component
 import App from "./App";
 
+// Import Context
+import { AuthProvider } from "./services/AuthContext";
+
 //pages
 import EditPlant from "./pages/editPlant/EditPlant";
-
 import Garden from "./pages/garden/Garden";
 import Homepage from "./pages/homepage/Homepage";
 import PlantDetails from "./pages/plantDetails/PlantDetails";
@@ -86,7 +88,9 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 );
 
