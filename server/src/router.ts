@@ -23,12 +23,21 @@ router.get("/api/logout", authAction.logout);
 router.get("/api/plants", plantAction.browse);
 router.get("/api/plants/:id", plantAction.read);
 router.get("/api/plants-search", plantAction.browseByCategory);
-router.put("/api/plants/:id", formPlant.validate, plantAction.edit);
+router.put(
+  "/api/plants/:id",
+  authAction.verifyAdmin,
+  formPlant.validate,
+  plantAction.edit,
+);
 
 // user plant
-router.get("/api/userplants", plantUserAction.browse);
-router.post("/api/userplants", plantUserAction.add);
-router.delete("/api/userplants/:id", plantUserAction.destroy);
+router.get("/api/userplants", authAction.verifyConnect, plantUserAction.browse);
+router.post("/api/userplants", authAction.verifyConnect, plantUserAction.add);
+router.delete(
+  "/api/userplants/:id",
+  authAction.verifyConnect,
+  plantUserAction.destroy,
+);
 
 //earth
 

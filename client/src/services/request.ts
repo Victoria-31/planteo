@@ -32,7 +32,9 @@ const getPlantsSearch = (earthType: string, name: string) => {
 
 const getUserPlants = () => {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/userplants`)
+    .get(`${import.meta.env.VITE_API_URL}/api/userplants`, {
+      withCredentials: true,
+    })
     .then((response) => response.data)
     .catch((error) => console.error(error));
 };

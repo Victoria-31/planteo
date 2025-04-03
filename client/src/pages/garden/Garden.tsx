@@ -18,7 +18,9 @@ export default function Garden() {
   const deletePlants = (id: number) => {
     if (window.confirm("Voulez-vous vraiment supprimer cette offre ?")) {
       axios
-        .delete(`${import.meta.env.VITE_API_URL}/api/userplants/${id}`)
+        .delete(`${import.meta.env.VITE_API_URL}/api/userplants/${id}`, {
+          withCredentials: true,
+        })
         .then(() => {
           revalidate();
         })

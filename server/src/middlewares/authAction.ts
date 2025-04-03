@@ -107,6 +107,35 @@ const verifyUser: RequestHandler = async (req, res, next) => {
   }
 };
 
+const verifyConnect: RequestHandler = async (req, res, next) => {
+  if (!process.env.APP_SECRET) {
+    throw new Error("Vous n'avez pas configuré votre APP SECRET dans le .env");
+  }
+
+  try {
+    const { auth } = req.cookies;
+
+    if (!auth) {
+      console.info("cc");
+      res.sendStatus(403);
+      return;
+    }
+
+    const resultPayload = await jwt.verify(auth, process.env.APP_SECRET);
+
+    if (typeof resultPayload !== "object") {
+      throw new Error("Token invalid");
+    }
+    if (resultPayload.role !== "user" && resultPayload.role !== "admin") {
+      res.sendStatus(403);
+      return;
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
 const verifyAdmin: RequestHandler = async (req, res, next) => {
   if (!process.env.APP_SECRET) {
     throw new Error("Vous n'avez pas configuré votre APP SECRET dans le .env");
@@ -133,4 +162,11 @@ const verifyAdmin: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { login, logout, hashPassword, verifyUser, verifyAdmin };
+export default {
+  login,
+  logout,
+  hashPassword,
+  verifyConnect,
+  verifyUser,
+  verifyAdmin,
+};

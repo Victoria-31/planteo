@@ -18,21 +18,16 @@
   margin-bottom: 3rem;
 }
 
-/* .plantWords {
-  font-size: 1.2em;
-  color: #666;
-  margin-top: 10px;
-} */
 .plantDetails h1 {
   color: var(--primary);
   text-align: center;
   margin-top: 2rem;
 }
-.plantDetails div {
+.plantDetails .navigation {
   text-align: center;
   padding: 1rem;
 }
-.plantDetails button {
+.plantDetails .add-plant {
   display: flex;
   margin: auto;
   justify-content: center;

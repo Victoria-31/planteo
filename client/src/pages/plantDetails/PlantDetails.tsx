@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Bounce, ToastContainer, toast } from "react-toastify";
+import { useAuth } from "../../services/AuthContext";
 
 import "./plantDetails.css";
 
@@ -32,16 +33,20 @@ export default function PlantDetails() {
   const newPlantUser = {
     plant_id: plant.id,
   };
+  const { role } = useAuth();
 
   const handleAddPlant = async (newPlantUser: PlantUser) => {
     try {
       await axios.post(
         `${import.meta.env.VITE_API_URL}/api/userplants`,
         newPlantUser,
+        {
+          withCredentials: true,
+        },
       );
       setErrorMessage("");
 
-      toast.success("Offre ajoutée avec succès !", {
+      toast.success("Plante ajoutée avec succès !", {
         position: "bottom-center",
         autoClose: 2000,
         hideProgressBar: false,
@@ -106,10 +111,20 @@ export default function PlantDetails() {
           </p>
         </article>
       </section>
+
       <p className="errorMessage">{errorMessage ? errorMessage : ""}</p>
-      <button type="button" onClick={() => handleAddPlant(newPlantUser)}>
-        Ajouter à mon jardin
-      </button>
+
+      {role !== "anonymous" ? (
+        <button
+          type="button"
+          className="add-plant"
+          onClick={() => handleAddPlant(newPlantUser)}
+        >
+          Ajouter à mon jardin
+        </button>
+      ) : (
+        ""
+      )}
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
