@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import Login from "../login/Login";
 import BurgerMenu from "./BurgerMenu";
 import "./navbar.css";
 
@@ -9,6 +10,18 @@ const NavBar: React.FC = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(!isModalOpen);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = "";
   };
 
   useEffect(() => {
@@ -54,11 +67,17 @@ const NavBar: React.FC = () => {
           </NavLink>
         </li>
         <li>
-          <button type="button" className="nav-link">
+          <NavLink to="/my-garden" className="nav-link">
             Mon jardin
+          </NavLink>
+        </li>
+        <li>
+          <button type="button" className="button-desktop" onClick={openModal}>
+            Se connecter
           </button>
         </li>
       </ul>
+      <Login isOpen={isModalOpen} onClose={closeModal} />
     </nav>
   );
 };

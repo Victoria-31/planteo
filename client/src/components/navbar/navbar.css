@@ -11,8 +11,8 @@ nav {
     background: none;
     border: none;
     padding-right: 1.6rem;
-    color: var(--light);
-    font-size: 2rem;
+    color: var(--primary);
+    font-size: 1.5rem;
     font-family: "Squada One", sans-serif;
   }
 }
@@ -54,8 +54,9 @@ nav a img {
     & ul {
       font-size: 1.4rem;
     }
-    & button {
+    & .button-desktop {
       font-size: 1.4rem;
+      color: var(--light);
     }
 
     .burger-icon {

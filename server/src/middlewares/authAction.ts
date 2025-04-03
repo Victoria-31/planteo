@@ -99,7 +99,6 @@ const verifyUser: RequestHandler = async (req, res, next) => {
       throw new Error("Token invalid");
     }
 
-    // doute ici si il faut pas définir un id
     if (resultPayload.role === "user") {
       next();
     }

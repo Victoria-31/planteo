@@ -21,7 +21,9 @@
     }
   }
 }
-
+.burger-icon {
+  color: var(--light);
+}
 .burger-menu.open {
   display: flex;
 }
