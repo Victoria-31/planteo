@@ -16,6 +16,22 @@
 
 .plantDetails {
   margin-bottom: 3rem;
+  & .action-plant-detail {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: baseline;
+    & button {
+      display: flex;
+      justify-content: center;
+      padding: 0.4rem 0.8rem;
+      background-color: var(--primary);
+      font-weight: 700;
+      border-radius: 8px;
+      border: none;
+      color: var(--light);
+    }
+  }
 }
 
 .plantDetails h1 {
@@ -27,17 +43,7 @@
   text-align: center;
   padding: 1rem;
 }
-.plantDetails .add-plant {
-  display: flex;
-  margin: auto;
-  justify-content: center;
-  padding: 0.4rem 0.8rem;
-  background-color: var(--primary);
-  font-weight: 700;
-  border-radius: 8px;
-  border: none;
-  color: var(--light);
-}
+
 .plantInfo {
   display: flex;
   flex-direction: column;

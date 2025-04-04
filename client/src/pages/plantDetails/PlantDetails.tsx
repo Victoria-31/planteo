@@ -113,18 +113,24 @@ export default function PlantDetails() {
       </section>
 
       <p className="errorMessage">{errorMessage ? errorMessage : ""}</p>
-
-      {role !== "anonymous" ? (
-        <button
-          type="button"
-          className="add-plant"
-          onClick={() => handleAddPlant(newPlantUser)}
-        >
-          Ajouter à mon jardin
-        </button>
-      ) : (
-        ""
-      )}
+      <div className="action-plant-detail">
+        {role !== "anonymous" ? (
+          <button
+            type="button"
+            className="add-plant"
+            onClick={() => handleAddPlant(newPlantUser)}
+          >
+            Ajouter à mon jardin
+          </button>
+        ) : (
+          ""
+        )}
+        {role === "admin" ? (
+          <Link to={`/edit-plant/${plant.id}`}>Modifier</Link>
+        ) : (
+          ""
+        )}{" "}
+      </div>
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
