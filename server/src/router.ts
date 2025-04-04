@@ -30,6 +30,8 @@ router.put(
   plantAction.edit,
 );
 
+router.delete("/api/plants/:id", authAction.verifyAdmin, plantAction.destroy);
+
 // user plant
 router.get(
   "/api/userplants",

@@ -161,6 +161,14 @@ class plantRepository {
 
     return result.affectedRows;
   }
+  async delete(id: number) {
+    const [result] = await DatabaseClient.query<Result>(
+      "DELETE FROM plant WHERE id = ? ",
+      [id],
+    );
+
+    return result.affectedRows;
+  }
 }
 
 export default new plantRepository();

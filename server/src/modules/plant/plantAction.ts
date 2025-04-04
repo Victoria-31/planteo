@@ -72,10 +72,22 @@ const edit: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+const destroy: RequestHandler = async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+
+    await plantRepository.delete(id);
+
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
 
 export default {
   browse,
   browseByCategory,
   edit,
   read,
+  destroy,
 };
