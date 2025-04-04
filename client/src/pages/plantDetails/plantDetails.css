@@ -18,9 +18,9 @@
   margin-bottom: 3rem;
   & .action-plant-detail {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 1rem;
-    align-items: baseline;
     & button {
       display: flex;
       justify-content: center;

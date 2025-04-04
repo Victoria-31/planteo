@@ -24,6 +24,21 @@ interface PlantUser {
 }
 
 export default function PlantDetails() {
+  const deletePlant = (id: number) => {
+    if (window.confirm("Voulez-vous vraiment supprimer cette plante ?")) {
+      axios
+        .delete(`${import.meta.env.VITE_API_URL}/api/plants/${id}`, {
+          withCredentials: true,
+        })
+
+        .catch((error) => {
+          console.error(
+            "Erreur lors de  de la suppression de la plante :",
+            error,
+          );
+        });
+    }
+  };
   const plant = useLoaderData() as Plant;
   const totalPlants = 19;
   const nextPlantId = plant.id < totalPlants ? plant.id + 1 : 1;
@@ -126,7 +141,12 @@ export default function PlantDetails() {
           ""
         )}
         {role === "admin" ? (
-          <Link to={`/edit-plant/${plant.id}`}>Modifier</Link>
+          <>
+            <button type="button" onClick={() => deletePlant(plant.id)}>
+              Supprimer
+            </button>
+            <Link to={`/edit-plant/${plant.id}`}>Modifier</Link>
+          </>
         ) : (
           ""
         )}{" "}
