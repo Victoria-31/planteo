@@ -1,6 +1,7 @@
 import axios from "axios";
 import type { FormEventHandler } from "react";
 import { useState } from "react";
+import SignUp from "../signUp/SignUp";
 import SvgIcons from "./SvgIcons";
 import "./login.css";
 import { useAuth } from "../../services/AuthContext";
@@ -22,6 +23,8 @@ export default function Login({ isOpen, onClose }: LoginProps) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [error, setError] = useState(() => null as string | null);
   const [showPassword, setShowPassword] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
+
   const { setRole } = useAuth();
 
   const togglePassword = () => {
@@ -48,7 +51,6 @@ export default function Login({ isOpen, onClose }: LoginProps) {
         .then((response) => {
           setRole(response.data.role);
           onClose();
-          onClose();
         });
     } catch (err) {
       console.error("Request failed:", err);
@@ -58,52 +60,67 @@ export default function Login({ isOpen, onClose }: LoginProps) {
 
   return (
     <dialog className="dialog_login" open={isOpen}>
-      <form onSubmit={handleSubmit}>
-        <h2>Connexion</h2>
-        <label htmlFor="email-login">
-          Email<span>*</span>
-        </label>
-        <input
-          type="email"
-          name="email"
-          value={credentials.email}
-          onChange={handleChange}
-          required
-        />
-        <label htmlFor="password_login">
-          Mot de passe<span className="star">*</span>
-        </label>
-        <div className="password_input">
+      {isSignUp ? (
+        <SignUp isOpen={isOpen} onClose={onClose} />
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <h2>Connexion</h2>
+          <label htmlFor="email-login">
+            Email<span>*</span>
+          </label>
           <input
-            className="input_password"
-            type={showPassword ? "text" : "password"}
-            name="password"
-            value={credentials.password}
+            type="email"
+            name="email"
+            value={credentials.email}
             onChange={handleChange}
             required
           />
-          <button
-            type="button"
-            onClick={togglePassword}
-            className="show_password"
-          >
-            <SvgIcons
-              path={showIconPassword.path}
-              height={showIconPassword.height}
-              width={showIconPassword.width}
+          <label htmlFor="password_login">
+            Mot de passe<span className="star">*</span>
+          </label>
+          <div className="password_input">
+            <input
+              className="input_password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={credentials.password}
+              onChange={handleChange}
+              required
             />
-          </button>
-        </div>
-        <div className="login_buttons">
-          <button className="button-connect" type="submit">
-            Se connecter
-          </button>
-          <button type="button" onClick={onClose}>
-            Annuler
-          </button>
-        </div>
-        {error && <p className="messageError">{error}</p>}
-      </form>
+            <button
+              type="button"
+              onClick={togglePassword}
+              className="show_password"
+            >
+              <SvgIcons
+                path={showIconPassword.path}
+                height={showIconPassword.height}
+                width={showIconPassword.width}
+              />
+            </button>
+          </div>
+          <div className="login_buttons">
+            <button className="button-connect" type="submit">
+              Se connecter
+            </button>
+            <button type="button" className="button-connect" onClick={onClose}>
+              Annuler
+            </button>
+          </div>
+          <div className="register_content">
+            <p>Pas encore de compte ?</p>
+            <button
+              className="register_button"
+              type="button"
+              onClick={() => setIsSignUp(true)}
+            >
+              S'inscrire
+            </button>
+          </div>
+
+          {error && <p className="messageError">{error}</p>}
+        </form>
+      )}
     </dialog>
   );
 }

@@ -25,6 +25,10 @@
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
+    & .button-connect {
+      margin: 0;
+      padding: 0;
+    }
     & h2 {
       font-size: 2rem;
       margin: 2rem 0;
@@ -88,6 +92,15 @@
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 19;
+}
+
+.register_content p {
+  padding-top: 2rem;
+  text-align: center;
+}
+.register_content button {
+  margin: 0;
+  padding: 0;
 }
 
 .dialog_login:not([open]) {
