@@ -17,29 +17,38 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
-// const add: RequestHandler = async (req, res, next) => {
-//   try {
-//     const newUser = {
-//       firstname: req.body.firstname,
-//       lastname: req.body.lastname,
-//       email: req.body.email,
-//       hashed_password: req.body.hashed_password,
-//     };
+const browse: RequestHandler = async (req, res, next) => {
+  try {
+    const user = await userRepository.readAll();
 
-//     const insertId = await candidateRepository.create(newCandidate);
+    res.json(user);
+  } catch (err) {
+    next(err);
+  }
+};
 
-//     res.status(201).json({ insertId });
-//   } catch (err) {
-//     if (typeof err === "object" && err !== null && "code" in err) {
-//       const error = err as { code: string };
+const add: RequestHandler = async (req, res, next) => {
+  try {
+    const newUser = {
+      name: req.body.name,
+      email: req.body.email,
+      hashed_password: req.body.hashed_password,
+    };
 
-//       if (error.code === "ER_DUP_ENTRY") {
-//         void res.status(400).json({ error: "Cet email est déjà utilisé." });
-//         return;
-//       }
-//     }
-//     next(err);
-//   }
-// };
+    const insertId = await userRepository.create(newUser);
 
-export default { read };
+    res.status(201).json({ insertId });
+  } catch (err) {
+    if (typeof err === "object" && err !== null && "code" in err) {
+      const error = err as { code: string };
+
+      if (error.code === "ER_DUP_ENTRY") {
+        void res.status(400).json({ error: "Cet email est déjà utilisé." });
+        return;
+      }
+    }
+    next(err);
+  }
+};
+
+export default { read, add, browse };

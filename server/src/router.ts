@@ -9,10 +9,11 @@ const router = express.Router();
 // Define item-related routes
 import authAction from "./middlewares/authAction";
 import formPlant from "./middlewares/formPlant";
+import formUser from "./middlewares/formUser";
 import earthAction from "./modules/earth/earthAction";
 import plantAction from "./modules/plant/plantAction";
 import plantUserAction from "./modules/plantUser/plantUserAction";
-
+import userAction from "./modules/user/userAction";
 /* LOGIN LOGOUT ************************************************************************* */
 
 router.post("/api/login", authAction.login);
@@ -49,6 +50,15 @@ router.delete(
 
 router.get("/api/earth", earthAction.browse);
 
+//user
+
+router.post(
+  "/api/users",
+  formUser.validate,
+  authAction.hashPassword,
+  userAction.add,
+);
+router.get("/api/users", userAction.browse);
 /* ************************************************************************* */
 
 export default router;

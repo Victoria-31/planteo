@@ -10,11 +10,18 @@ type User = {
   hashed_password: string;
 };
 
+type UserDefault = {
+  id: number;
+  email: string;
+  name: string;
+  hashed_password: string;
+};
+
 class userRepository {
-  async create(user: Omit<User, "id">) {
+  async create(newUser: Omit<UserDefault, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "insert into user (name, role, email, hashed_password) values ( ?, ?, ?, ?)",
-      [user.name, user.email, user.role, user.hashed_password],
+      "insert into user (name, email, hashed_password) values ( ?, ?, ?)",
+      [newUser.name, newUser.email, newUser.hashed_password],
     );
     return result.insertId;
   }
@@ -25,6 +32,11 @@ class userRepository {
       [id],
     );
     return rows[0] as User;
+  }
+
+  async readAll() {
+    const [rows] = await databaseClient.query<Rows>("select * from user ");
+    return rows;
   }
 
   async readByEmailWithPassword(email: string) {

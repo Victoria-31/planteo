@@ -29,7 +29,7 @@ export default function Garden() {
 
   const [selectedMonth, setSelectedMonth] = useState(null as null | string);
 
-  const deletePlants = (id: number) => {
+  const deletePlant = (id: number) => {
     if (window.confirm("Voulez-vous vraiment supprimer cette plante ?")) {
       axios
         .delete(`${import.meta.env.VITE_API_URL}/api/userplants/${id}`, {
@@ -39,7 +39,7 @@ export default function Garden() {
           revalidate();
         })
         .catch((error) => {
-          console.error("Erreur lors de l'ajout de l'offre :", error);
+          console.error("Erreur lors de la suppression de la plante :", error);
         });
     }
   };
@@ -68,7 +68,7 @@ export default function Garden() {
                 ) : (
                   ""
                 )}
-                <button type="button" onClick={() => deletePlants(plant.id)}>
+                <button type="button" onClick={() => deletePlant(plant.id)}>
                   Supprimer
                 </button>
               </div>
